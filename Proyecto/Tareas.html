@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas</title>
+    <link rel="stylesheet" href="Styles/StylesPrincipal.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+
+<script>
+    function confirmar() {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Estás seguro de que deseas cerrar sesión?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, continuar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "index.html";
+            }
+        });
+    }
+
+</script>
+
+
+<body>
+
+    <header>
+        <div class="content">
+            <div class="menu container">
+
+                <a href="principal.html">
+
+                </a>
+                <input type="checkbox" id="menu">
+                <label for="menu">
+                    <img src="Images/menu.png" class="menu-icono" alt="">
+                </label>
+
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="principal.html">Inicio</a></li>
+                        <li><a href="equipo.php">Equipo</a></li>
+                        <li><a href="Tareas.html">Tareas</a></li>
+                        <li><a href="registroequipo.php">Registro</a></li>
+                        <li><a href="#">Cuenta</a></li>
+                        <li onclick="confirmar()"><a href="#">Cerrar Sesion</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </header>
+
+
+    <script src="script.js"></script>
+
+
+
+
+
+</body>
+
+</html>
