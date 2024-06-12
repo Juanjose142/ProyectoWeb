@@ -177,76 +177,11 @@ img {
     text-transform: capitalize;
 }
 
-.formulario {
-    margin-top: 100px;
-    margin-bottom: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.form {
-    padding: 50px;
-    width: 50px;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
-.form h2 {
-    font-size: 25px;
-    color: #323232;
-    text-transform: uppercase;
-    margin-bottom: 35px;
-}
 
 .input-container {
     position: relative;
 }
 
-.input-container > i {
-    padding: 14px;
-    border-radius: 50%;
-    background-color: #007bff;
-    color: #FAFAFA;
-    position: absolute;
-    font-size: 20px;
-    top: 4px;
-    left: 10px;
-}
-
-.input-container > input, textarea {
-    padding: 17px 15px 17px 65px;
-    width: 100%;
-    margin-bottom: 25px;
-    border-radius: 35px;
-    background-color: transparent;
-    border: 2px solid #007bff;
-    font-size: 16px;
-    outline: none;
-    color: #323232;
-}
-
-textarea {
-    font-family: 'Poppins', sans-serif;
-    height: 150px;
-}
-
-::placeholder {
-    color: #a0a0a0;
-    font-size: 16px;
-}
-
-.btn {
-    background-color: #007bff;
-    padding: 17px 30px;
-    width: 100%;
-    border: 0;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    border-radius: 25px;
-    color: #FAFAFA;
-    font-size: 15px;
-    cursor: pointer;
-}
 
 .footer {
     padding: 50px;

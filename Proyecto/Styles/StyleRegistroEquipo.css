@@ -1,4 +1,6 @@
-/* Estilos principales */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +10,8 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-}
+    font-family: "Poppins", sans-serif;
+  }
 
 .container {
     max-width: 1100px;
@@ -23,7 +25,7 @@ body {
 
 .menu {
     position: absolute;
-    top: 10px;
+    top: 0;
     left: 0;
     right: 0;
     display: flex;
@@ -46,14 +48,14 @@ body {
 .menu .navbar ul li a {
     font-size: 18px;
     padding: 20px;
-    color: #DEDEDE;
+    color: #323232;
     display: block;
-    font-weight: bold;
 }
 
 .menu .navbar ul li a:hover {
-    color: #ffffff;
+    color: #02b1f4;
 }
+
 
 #menu {
     display: none;
