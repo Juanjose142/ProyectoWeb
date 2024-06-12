@@ -8,6 +8,46 @@
     list-style: none;
 }
 
+.content {
+    min-height: 80px;
+    background-color: #007bff;
+}
+
+.logo {
+    font-size: 25px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+    text-transform: uppercase;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
 
 body {
     font-family: "Poppins", sans-serif;
