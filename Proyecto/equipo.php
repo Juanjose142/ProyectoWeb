@@ -73,10 +73,10 @@ if (isset($_GET['eliminar'])) {
 </head>
 
 <body>
-    <header>
+    <header class="header">
         <div class="content">
             <div class="menu container">
-                <a href="principal.html"></a>
+                <a href="principal.html" class="logo">RapidFlow</a>
                 <input type="checkbox" id="menu">
                 <label for="menu">
                     <img src="Images/menu.png" class="menu-icono" alt="Menu">
