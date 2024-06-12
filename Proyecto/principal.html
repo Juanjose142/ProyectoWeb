@@ -11,7 +11,6 @@
 
 </head>
 
-
 <script>
     function confirmar() {
         Swal.fire({
@@ -35,33 +34,91 @@
 
 <body>
 
-    <header>
-        <div class="content">
-            <div class="menu container">
-                <a href="principal.html">
-                    <!--<img src="Images/R-FL.png" alt="Descripción de la imagen" width="250" height="65">-->
-                </a>
-                <input type="checkbox" id="menu">
-                <label for="menu">
-                    <img src="Images/menu.png" class="menu-icono" alt="">
-                </label>
-                <nav class="navbar">
-                    <ul>
-                        <li><a href="principal.html">Inicio</a></li>
+    <header class="header">
+
+        <div class="menu container">
+            <a href="#" class="logo">RapidFlow</a>
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src="Images/Rapid-flow Logistics.jpg" class="menu-icono" alt="menu">
+            </label>
+            <nav class="navbar">
+                <ul>
+                <li><a href="principal.html">Inicio</a></li>
                         <li><a href="equipo.php">Equipo</a></li>
                         <li><a href="Tareas.html">Tareas</a></li>
                         <li><a href="registroequipo.php">Registro</a></li>
                         <li><a href="#">Cuenta</a></li>
                         <li onclick="confirmar()"><a href="#">Cerrar Sesion</a></li>
-                    </ul>
-                </nav>
+                </ul>
+            </nav>
+        </div>
 
+        <div class="header-content container">
+            <div class="header-txt">
+                <h1>RapidFlow</h1>
+                <p>
+                    Bienvenidos a RapidFlow Logistics, su socio confiable en la gestión eficiente de tareas y proyectos dentro de equipos de trabajo. Nos especializamos en optimizar los procesos y la colaboración de su equipo, asegurando que cada tarea se complete de manera eficaz y puntual.
+            </div>
+            <div class="header-img">
+                <img src="Images/Rapid-flow Logistics.jpg" alt="">
             </div>
         </div>
+
     </header>
+    
+    <section class="about container">
 
-    <h1>Inicio</h1>
+        <div class="about-img">
+            <img src="Images/Equipodetrabajo.jpg" alt="">
+        </div>
 
+        <div class="about-txt">
+            <h2>Nosotros</h2>
+            <p>
+                En RapidFlow Logistics, comprendemos que la coordinación y la gestión efectiva de tareas son esenciales para el éxito de cualquier proyecto. Nuestro equipo está compuesto por expertos en logística y gestión de proyectos que utilizan las últimas tecnologías y metodologías para garantizar que su equipo funcione como una máquina bien engrasada.
+            </p>
+        </div>
+    </section>
+
+    <main class="servicios">
+        <h2>Serivcios</h2>
+        <div class="servicios-content container">
+            <div class="servicio-1">
+                <i class="fa-solid fa-gears"></i>
+                <h3>Logistica</h3>
+            </div>
+            <div class="servicio-1">
+                <i class="fa-solid fa-user-group"></i>
+                <h3>Trabajo en equipo</h3>
+            </div>
+            <div class="servicio-1">
+                <i class="fa-solid fa-timeline"></i>
+                <h3>Administracion</h3>
+            </div>
+            <div class="servicio-1">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <h3>Gestion</h3>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content container">
+            <div class="link">
+                <a href="#" class="logo">RapidFlow</a>
+            </div>
+            <div class="link">
+                <ul>
+                    <li><a href="equipo.php">Equipo</a></li>
+                        <li><a href="Tareas.html">Tareas</a></li>
+                        <li><a href="registroequipo.php">Registro</a></li>
+                        <li><a href="#">Cuenta</a></li>
+                        <li onclick="confirmar()"><a href="#">Cerrar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
