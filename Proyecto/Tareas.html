@@ -2,52 +2,24 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tareas</title>
-    <link rel="stylesheet" href="Styles/StylesPrincipal.css">
+    <title>RapidFlow Logistic - Principal</title>
+    <link rel="stylesheet" href="Styles/StylesTareas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
 
-
-<script>
-    function confirmar() {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "¿Estás seguro de que deseas cerrar sesión?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, continuar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "index.html";
-            }
-        });
-    }
-
-</script>
-
-
 <body>
-
     <header>
         <div class="content">
             <div class="menu container">
-
-                <a href="principal.html">
-
-                </a>
+                <div class="logo">
+                </div>
                 <input type="checkbox" id="menu">
                 <label for="menu">
                     <img src="Images/menu.png" class="menu-icono" alt="">
                 </label>
-
                 <nav class="navbar">
                     <ul>
                         <li><a href="principal.html">Inicio</a></li>
@@ -55,21 +27,142 @@
                         <li><a href="Tareas.html">Tareas</a></li>
                         <li><a href="registroequipo.php">Registro</a></li>
                         <li><a href="#">Cuenta</a></li>
-                        <li onclick="confirmar()"><a href="#">Cerrar Sesion</a></li>
+                        <li onclick="confirmar()"><a href="#">Cerrar Sesión</a></li>
                     </ul>
                 </nav>
-
             </div>
         </div>
     </header>
 
+    <div class="container">
+        <div class="kanban-board">
+            <div class="kanban-column" data-status="todo">
+                <h2>Por Hacer</h2>
+                <button class="button" onclick="addTask('todo')">Agregar Tarea</button>
+                <div class="kanban-card" draggable="true">Tarea 1</div>
+                <div class="kanban-card" draggable="true">Tarea 2</div>
+            </div>
+            <div class="kanban-column" data-status="in-progress">
+                <h2>En Progreso</h2>
+                <div class="kanban-card" draggable="true">Tarea 3</div>
+            </div>
+            <div class="kanban-column" data-status="completed">
+                <h2>Completado</h2>
+                <div class="kanban-card" draggable="true">Tarea 4</div>
+            </div>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        function confirmar() {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¿Estás seguro de que deseas cerrar sesión?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, continuar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "index.html";
+                }
+            });
+        }
 
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const cards = document.querySelectorAll('.kanban-card');
+            const columns = document.querySelectorAll('.kanban-column');
 
+            cards.forEach(card => {
+                card.addEventListener('dragstart', dragStart);
+                card.addEventListener('dragend', dragEnd);
+                card.addEventListener('dblclick', () => removeTask(card));
+            });
 
+            columns.forEach(column => {
+                column.addEventListener('dragover', dragOver);
+                column.addEventListener('dragenter', dragEnter);
+                column.addEventListener('dragleave', dragLeave);
+                column.addEventListener('drop', dragDrop);
+            });
 
+            function dragStart(e) {
+                this.classList.add('dragging');
+                e.dataTransfer.setData('text/plain', this.innerHTML);
+            }
 
+            function dragEnd() {
+                this.classList.remove('dragging');
+            }
+
+            function dragOver(e) {
+                e.preventDefault();
+            }
+
+            function dragEnter(e) {
+                e.preventDefault();
+                this.classList.add('hovered');
+            }
+
+            function dragLeave() {
+                this.classList.remove('hovered');
+            }
+
+            function dragDrop(e) {
+                const data = e.dataTransfer.getData('text/plain');
+                const draggingElement = document.querySelector('.dragging');
+                this.classList.remove('hovered');
+                if (draggingElement) {
+                    draggingElement.innerHTML = data;
+                    this.appendChild(draggingElement);
+                }
+            }
+
+            window.addTask = function (status) {
+                Swal.fire({
+                    title: 'Introduce el nombre de la tarea:',
+                    input: 'text',
+                    inputPlaceholder: 'Nombre de la tarea',
+                    showCancelButton: true,
+                    confirmButtonText: 'Agregar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const taskText = result.value;
+                        if (taskText) {
+                            const column = document.querySelector(`.kanban-column[data-status="${status}"]`);
+                            const newCard = document.createElement('div');
+                            newCard.classList.add('kanban-card');
+                            newCard.setAttribute('draggable', 'true');
+                            newCard.textContent = taskText;
+                            newCard.addEventListener('dragstart', dragStart);
+                            newCard.addEventListener('dragend', dragEnd);
+                            newCard.addEventListener('dblclick', () => removeTask(newCard));
+                            column.appendChild(newCard);
+                        }
+                    }
+                });
+            };
+
+            window.removeTask = function (card) {
+                Swal.fire({
+                    title: '¿Seguro que quieres eliminar esta tarea?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        card.remove();
+                    }
+                });
+            };
+        });
+    </script>
 </body>
 
 </html>
