@@ -19,7 +19,22 @@ body {
 
 .content {
     min-height: 80px;
-    background-color: #007bff;
+    background-color: #02b1f4;
+}
+
+
+.logo {
+    font-size: 25px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.header {
+    background-color: #fafafa;
+    padding: flex;
+    display: flex;
+    align-items: center;
+
 }
 
 .menu {
@@ -30,12 +45,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-.logo {
-    font-size: 25px;
-    color: #ffffff;
-    text-transform: uppercase;
-    font-weight: bold;
 }
 
 .menu .navbar ul li {
@@ -52,6 +61,13 @@ body {
 
 .menu .navbar ul li a:hover {
     color: #02b1f4;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #02b1f4;
+    text-transform: uppercase;
 }
 
 

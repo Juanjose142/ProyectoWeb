@@ -20,7 +20,7 @@ body {
 
 .content {
     min-height: 80px;
-    background-color: #007bff;
+    background-color: #02b1f4;
 }
 
 .menu {
@@ -35,9 +35,17 @@ body {
 
 .logo {
     font-size: 25px;
-    color: #ffffff;
+    font-weight: 800;
+    color: #02b1f4;
     text-transform: uppercase;
-    font-weight: bold;
+}
+
+.header {
+    background-color: #fafafa;
+    padding: flex;
+    display: flex;
+    align-items: center;
+
 }
 
 .menu .navbar ul li {

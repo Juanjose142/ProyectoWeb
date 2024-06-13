@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <header>
+    <header class="header">
         <div class="content">
             <div class="menu container">
                 <a href="principal.html"></a>
