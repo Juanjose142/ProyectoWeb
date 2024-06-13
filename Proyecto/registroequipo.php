@@ -104,6 +104,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Guardar</button>
         </form>
     </div>
+
+    <footer class="footer">
+        <div class="footer-content container">
+            <div class="link">
+                <a href="#" class="logo">RapidFlow</a>
+            </div>
+            <div class="link">
+                <ul>
+                    <li><a href="equipo.php">Equipo</a></li>
+                        <li><a href="Tareas.html">Tareas</a></li>
+                        <li><a href="registroequipo.php">Registro</a></li>
+                        <li><a href="#">Cuenta</a></li>
+                        <li onclick="confirmar()"><a href="#">Cerrar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

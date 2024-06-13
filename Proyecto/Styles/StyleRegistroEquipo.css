@@ -48,6 +48,18 @@ body {
 
 }
 
+.footer {
+    padding: 50px;
+    background-color: #FAFAFA;
+}
+
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .menu .navbar ul li {
     position: relative;
     float: left;
