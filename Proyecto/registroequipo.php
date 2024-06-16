@@ -106,21 +106,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <footer class="footer">
-        <div class="footer-content container">
-            <div class="link">
-                <a href="#" class="logo">RapidFlow</a>
-            </div>
-            <div class="link">
-                <ul>
-                    <li><a href="equipo.php">Equipo</a></li>
-                        <li><a href="Tareas.html">Tareas</a></li>
-                        <li><a href="registroequipo.php">Registro</a></li>
-                        <li><a href="#">Cuenta</a></li>
-                        <li onclick="confirmar()"><a href="#">Cerrar Sesion</a></li>
-                </ul>
-            </div>
+    <div class="footer-content container">
+        <div class="footer-section">
+            <img src="Images/Rapid-flow_SinFondo.png" alt="Logo" class="footer-logo">
+            <p>© 2024 Rapid-flow.</p>
         </div>
-    </footer>
+        <div class="footer-section">
+            <h4>Actividad</h4>
+            <ul>
+                <li>Proyecto Final</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Integrantes</h4>
+            <ul>
+                <li>Alex Missael Torres Hernandez</li>
+                <li>Arturo Yael Posadas Guadarrama</li>
+                <li>Juan José de Jesús González Andrade</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Materia</h4>
+            <ul>
+                <li>Desarrollo Web</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Escuela</h4>
+            <ul>
+                <li>Ceti Plantel Colomos</li>
+            </ul>
+        </div>
+       
+        <div class="footer-section">
+            <h4>Social</h4>
+            <ul>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">Github</a></li>
+                <li><a href="#">YouTube</a></li>
+                <li><a href="#">Twitch</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
 </body>
 
 </html>
