@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -38,16 +38,14 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-
-
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
 body {
     font-family: "Poppins", sans-serif;
-  }
-  
+}
+
 img {
     max-width: 100%;
 }
@@ -62,7 +60,6 @@ img {
     padding: 130px 0 100px 0;
     display: flex;
     align-items: center;
-
 }
 
 .menu {
@@ -111,7 +108,7 @@ img {
     display: none;
 }
 
-.header-content{
+.header-content {
     display: flex;
 }
 
@@ -211,45 +208,63 @@ img {
     text-transform: capitalize;
 }
 
-
 .input-container {
     position: relative;
 }
 
-
+/* Footer styles */
 .footer {
     padding: 50px;
     background-color: #FAFAFA;
 }
 
-
 .footer-content {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
+    font-size: 14px; /* Ajusta este valor según sea necesario */
 }
 
-.link ul {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.footer-section {
+    flex: 1;
+    margin: 10px;
 }
 
-.link ul li {
-    margin-right: 50px;
+.footer-section h4 {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
 }
 
-.link ul li a{
-    color: #323232;
-    font-size: 17px;
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.link ul li a:hover {
-    color: #02b1f4;
+.footer-section ul li {
+    margin-bottom: 10px;
 }
 
-@media (max-width:991px) {
+.footer-section ul li a {
+    text-decoration: none;
+    color: #555;
+}
 
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.footer-section p {
+    color: #555;
+}
+
+
+@media (max-width: 991px) {
     .menu {
         padding: 20px;
     }
@@ -349,13 +364,18 @@ img {
     .footer-content {
         flex-direction: column;
         text-align: center;
+        font-size: 10%;
     }
 
-    .link ul {
-        flex-direction: column;
+    .footer-section {
+        margin: 20px 0;
     }
 
-    .link ul li {
+    .footer-section ul {
+        text-align: center;
+    }
+
+    .footer-section ul li {
         margin: 0 0 15px 0;
     }
 }

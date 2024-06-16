@@ -37,19 +37,15 @@
     <div class="container">
         <div class="kanban-board">
             <div class="kanban-column" data-status="todo">
-                <h2>Por Hacer</h2>
-                <button class="button" onclick="addTask('todo')">Agregar Tarea</button>
-                <div class="kanban-card" draggable="true">Tarea 1</div>
-                <div class="kanban-card" draggable="true">Tarea 2</div>
-            </div>
-            <div class="kanban-column" data-status="in-progress">
-                <h2>En Progreso</h2>
-                <div class="kanban-card" draggable="true">Tarea 3</div>
-            </div>
-            <div class="kanban-column" data-status="completed">
-                <h2>Completado</h2>
-                <div class="kanban-card" draggable="true">Tarea 4</div>
-            </div>
+    <h2>Por Hacer</h2>
+    <button class="button" onclick="addTask('todo')">Agregar Tarea</button>
+</div>
+<div class="kanban-column" data-status="in-progress">
+    <h2>En Progreso</h2>
+</div>
+<div class="kanban-column" data-status="completed">
+    <h2>Completado</h2>
+</div>
         </div>
     </div>
 
@@ -120,31 +116,55 @@
                 }
             }
 
+            
+
+            
             window.addTask = function (status) {
-                Swal.fire({
-                    title: 'Introduce el nombre de la tarea:',
-                    input: 'text',
-                    inputPlaceholder: 'Nombre de la tarea',
-                    showCancelButton: true,
-                    confirmButtonText: 'Agregar',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        const taskText = result.value;
-                        if (taskText) {
-                            const column = document.querySelector(`.kanban-column[data-status="${status}"]`);
-                            const newCard = document.createElement('div');
-                            newCard.classList.add('kanban-card');
-                            newCard.setAttribute('draggable', 'true');
-                            newCard.textContent = taskText;
-                            newCard.addEventListener('dragstart', dragStart);
-                            newCard.addEventListener('dragend', dragEnd);
-                            newCard.addEventListener('dblclick', () => removeTask(newCard));
-                            column.appendChild(newCard);
-                        }
-                    }
+    Swal.fire({
+        title: 'Introduce el nombre de la tarea:',
+        input: 'text',
+        inputPlaceholder: 'Nombre de la tarea',
+        showCancelButton: true,
+        confirmButtonText: 'Agregar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const taskText = result.value;
+            if (taskText) {
+                
+                const formData = new FormData();
+                formData.append('titulo', taskText);
+                formData.append('descripcion', ''); 
+                formData.append('estado', status); 
+
+
+                fetch('guardar_tarea.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    const column = document.querySelector(`.kanban-column[data-status="${status}"]`);
+                    const newCard = document.createElement('div');
+                    newCard.classList.add('kanban-card');
+                    newCard.setAttribute('draggable', 'true');
+                    newCard.textContent = taskText;
+                    newCard.addEventListener('dragstart', dragStart);
+                    newCard.addEventListener('dragend', dragEnd);
+                    newCard.addEventListener('dblclick', () => removeTask(newCard));
+                    column.appendChild(newCard);
+                })
+                .catch(error => {
+                    console.error('Error al guardar la tarea:', error);
                 });
-            };
+            }
+        }
+    });
+};
+
+
+
 
             window.removeTask = function (card) {
                 Swal.fire({
