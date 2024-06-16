@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <li><a href="Tareas.html">Tareas</a></li>
                         <li><a href="registroequipo.php">Registro</a></li>
                         <li><a href="cuenta.php">Cuenta</a></li>
-                        <li onclick="confirmar()"><a href="#">Cerrar Sesion</a></li>
+                        <li onclick="confirmar()"><a href="#">Cerrar Sesión</a></li>
                     </ul>
                 </nav>
             </div>

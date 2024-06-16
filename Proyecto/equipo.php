@@ -77,7 +77,7 @@ if (isset($_GET['eliminar'])) {
 </head>
 <body>
 <div class="content-wrapper">
-    <header>
+    <header class = "header">
         <div class="content">
             <div class="menu container">
             <a href="principal.html" class="logo">Equipo</a>
