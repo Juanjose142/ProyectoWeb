@@ -76,66 +76,66 @@ if (isset($_GET['eliminar'])) {
     </script>
 </head>
 <body>
-<div class="content-wrapper">
-    <header class = "header">
-        <div class="content">
-            <div class="menu container">
-            <a href="principal.html" class="logo">Equipo</a>
-                <a href="principal.html"></a>
-                <input type="checkbox" id="menu">
-                <label for="menu">
-                    <img src="Images/menu.png" class="menu-icono" alt="Menu">
-                </label>
-                <nav class="navbar">
-                    <ul>
-                        <li><a href="principal.html">Inicio</a></li>
-                        <li><a href="equipo.php">Equipo</a></li>
-                        <li><a href="Tareas.html">Tareas</a></li>
-                        <li><a href="registroequipo.php">Registro</a></li>
-                        <li><a href="cuenta.php">Cuenta</a></li>
-                        <li onclick="confirmar()"><a href="#">Cerrar Sesión</a></li>
-                    </ul>
-                </nav>
+    <div class="content-wrapper">
+        <header class = "header">
+            <div class="content">
+                <div class="menu container">
+                <a href="principal.html" class="logo">Equipo</a>
+                    <a href="principal.html"></a>
+                    <input type="checkbox" id="menu">
+                    <label for="menu">
+                        <img src="Images/menu.png" class="menu-icono" alt="Menu">
+                    </label>
+                    <nav class="navbar">
+                        <ul>
+                            <li><a href="principal.html">Inicio</a></li>
+                            <li><a href="equipo.php">Equipo</a></li>
+                            <li><a href="Tareas.html">Tareas</a></li>
+                            <li><a href="registroequipo.php">Registro</a></li>
+                            <li><a href="cuenta.php">Cuenta</a></li>
+                            <li onclick="confirmar()"><a href="#">Cerrar Sesión</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </div>
-    </header>
-    <div class="container">
+        </header>
+        <div class="container">
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Teléfono</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $sql = "SELECT * FROM equipo";
-                $result = mysqli_query($conexion, $sql);
-
-                while ($mostrar = mysqli_fetch_array($result)) {
-                ?>
+            <table>
+                <thead>
                     <tr>
-                        <td><?php echo $mostrar['id'] ?></td>
-                        <td><?php echo $mostrar['nombre'] ?></td>
-                        <td><?php echo $mostrar['apellido'] ?></td>
-                        <td><?php echo $mostrar['email'] ?></td>
-                        <td><?php echo $mostrar['telefono'] ?></td>
-                        <td>
-                            <a href="equipo.php?eliminar=<?php echo $mostrar['id'] ?>" onclick="return confirmarEliminacion()">Eliminar</a>
-                            <a href="UpdateEquipo.php?actualizar=<?php echo $mostrar['id'] ?>">Actualizar</a>
-                        </td>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
                     </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    <?php
+                    $sql = "SELECT * FROM equipo";
+                    $result = mysqli_query($conexion, $sql);
+
+                    while ($mostrar = mysqli_fetch_array($result)) {
+                    ?>
+                        <tr>
+                            <td><?php echo $mostrar['id'] ?></td>
+                            <td><?php echo $mostrar['nombre'] ?></td>
+                            <td><?php echo $mostrar['apellido'] ?></td>
+                            <td><?php echo $mostrar['email'] ?></td>
+                            <td><?php echo $mostrar['telefono'] ?></td>
+                            <td>
+                                <a href="equipo.php?eliminar=<?php echo $mostrar['id'] ?>" onclick="return confirmarEliminacion()">Eliminar</a>
+                                <a href="UpdateEquipo.php?actualizar=<?php echo $mostrar['id'] ?>">Actualizar</a>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <footer class="footer">
