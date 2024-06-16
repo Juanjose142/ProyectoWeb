@@ -77,7 +77,7 @@ mysqli_close($conn);
 </head>
 
 <body>
-    <header>
+    <header class = "header">
         <div class="content">
             <div class="menu container">
                 <div class="logo">
