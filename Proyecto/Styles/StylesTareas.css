@@ -8,7 +8,7 @@
     list-style: none;
 }
 
-body {
+body, html {
     font-family: "Poppins", sans-serif;
   }
 
@@ -22,6 +22,10 @@ body {
     background-color: #02b1f4;
 }
 
+.content-wrapper {
+    min-height: 100vh; /* Hace que el contenedor ocupe al menos el alto de la ventana */
+}
+
 
 .logo {
     font-size: 25px;
@@ -29,8 +33,9 @@ body {
     text-transform: uppercase;
     font-weight: bold;
 }
+
 .header {
-    background-color: #fafafa;
+    background-color: #ffffff;
     padding: flex;
     display: flex;
     align-items: center;
@@ -89,19 +94,18 @@ h1 {
 }
 
 .footer {
-    padding: 50px;
+    padding: flex;
     background-color: #FAFAFA;
-    position: absolute;
-    bottom: 0;
     width: 100%;
     height: 270px;
+    position: bottom;
 }
 
 .footer-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    font-size: 14px; /* Ajusta este valor según sea necesario */
+    font-size: 14px;
 }
 
 .footer-section {

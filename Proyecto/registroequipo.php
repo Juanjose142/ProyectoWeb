@@ -61,9 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+<div class="content-wrapper">
     <header class="header">
         <div class="content">
             <div class="menu container">
+            <a href="principal.html" class="logo">Registro</a>
                 <a href="principal.html"></a>
                 <input type="checkbox" id="menu">
                 <label for="menu">
@@ -104,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Guardar</button>
         </form>
     </div>
-
+    </div>
     <footer class="footer">
     <div class="footer-content container">
         <div class="footer-section">

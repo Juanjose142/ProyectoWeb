@@ -30,7 +30,7 @@ body {
     font-weight: bold;
 }
 .header {
-    background-color: #fafafa;
+    background-color: #ffffff;
     padding: flex;
     display: flex;
     align-items: center;
@@ -70,6 +70,11 @@ body {
     text-transform: uppercase;
 }
 
+.content-wrapper {
+    min-height: 100vh; /* Hace que el contenedor ocupe al menos el alto de la ventana */
+}
+
+
 
 #menu {
     display: none;
@@ -91,10 +96,9 @@ h1 {
 .footer {
     padding: 50px;
     background-color: #FAFAFA;
-    position: absolute;
-    bottom: 0;
     width: 100%;
     height: 270px;
+    position: bottom;
 }
 
 .footer-content {

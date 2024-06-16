@@ -76,9 +76,11 @@ if (isset($_GET['eliminar'])) {
     </script>
 </head>
 <body>
+<div class="content-wrapper">
     <header>
         <div class="content">
             <div class="menu container">
+            <a href="principal.html" class="logo">Equipo</a>
                 <a href="principal.html"></a>
                 <input type="checkbox" id="menu">
                 <label for="menu">
@@ -99,7 +101,6 @@ if (isset($_GET['eliminar'])) {
     </header>
     <div class="container">
 
-        <h1>Equipo</h1>
         <table>
             <thead>
                 <tr>
@@ -134,6 +135,7 @@ if (isset($_GET['eliminar'])) {
                 ?>
             </tbody>
         </table>
+    </div>
     </div>
 
     <footer class="footer">

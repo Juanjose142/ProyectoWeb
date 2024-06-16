@@ -77,9 +77,11 @@ mysqli_close($conn);
 </head>
 
 <body>
+<div class="content-wrapper">
     <header class = "header">
         <div class="content">
             <div class="menu container">
+            <a href="principal.html" class="logo">Cuenta</a>
                 <div class="logo">
                     <!-- Aquí puede ir tu logo -->
                 </div>
@@ -143,6 +145,7 @@ mysqli_close($conn);
             });
         }
     </script>
+    </div>
 
 <footer class="footer">
     <div class="footer-content container">
