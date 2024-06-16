@@ -1,6 +1,7 @@
 <?php
+session_start();
 
-$dbhost = "localhost";  // Localhost should be lowercase
+$dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
 $dbname = "proyecto";
@@ -11,13 +12,15 @@ if (!$conn) {
     die("No hay conexión: " . mysqli_connect_error());
 }
 
-$Email = $_POST["email"];
-$pass = $_POST["password"];
+$Email = mysqli_real_escape_string($conn, $_POST["email"]);
+$pass = mysqli_real_escape_string($conn, $_POST["password"]);
 
-$query = mysqli_query($conn, "SELECT * FROM usuarios WHERE Email = '$Email' and password = '$pass'");
-$nr = mysqli_num_rows($query);
+$query = "SELECT * FROM usuarios WHERE Email = '$Email' and password = '$pass'";
+$result = mysqli_query($conn, $query);
 
-if ($nr == 1) {
+if (mysqli_num_rows($result) == 1) {
+    $user = mysqli_fetch_assoc($result);
+    $_SESSION['user_id'] = $user['id'];
     echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
     echo "<script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -33,13 +36,13 @@ if ($nr == 1) {
                 });
             });
           </script>";
-} else if ($nr == 0) {
+} else {
     echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
     echo "<script>
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
                     title: 'Error',
-                    text: 'No existe el usuario.',
+                    text: 'No existe el usuario o la contraseña es incorrecta.',
                     icon: 'error',
                     confirmButtonText: 'OK'
                 }).then((result) => {
@@ -50,3 +53,6 @@ if ($nr == 1) {
             });
           </script>";
 }
+
+mysqli_close($conn);
+?>

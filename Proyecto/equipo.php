@@ -1,8 +1,9 @@
 <?php
+$conexion = mysqli_connect('localhost', 'root', '', 'proyecto');
 
-$conexion = mysqli_connect('localhost', 'root', '', 'Proyecto');
-
-
+if (!$conexion) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
 
 if (isset($_GET['eliminar'])) {
     $id = $_GET['eliminar'];
@@ -45,12 +46,11 @@ if (isset($_GET['eliminar'])) {
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Equipo</title>
-    <link rel="stylesheet" href="Styles/stylesequipo.css">
+    <link rel="stylesheet" href="Styles/StylesPrincipal.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function confirmar() {
@@ -69,14 +69,17 @@ if (isset($_GET['eliminar'])) {
                 }
             });
         }
+
+        function confirmarEliminacion() {
+            return confirm('¿Estás seguro de que deseas eliminar este registro?');
+        }
     </script>
 </head>
-
 <body>
-    <header class="header">
+    <header>
         <div class="content">
             <div class="menu container">
-                <a href="principal.html" class="logo">RapidFlow</a>
+                <a href="principal.html"></a>
                 <input type="checkbox" id="menu">
                 <label for="menu">
                     <img src="Images/menu.png" class="menu-icono" alt="Menu">
@@ -123,6 +126,7 @@ if (isset($_GET['eliminar'])) {
                         <td><?php echo $mostrar['telefono'] ?></td>
                         <td>
                             <a href="equipo.php?eliminar=<?php echo $mostrar['id'] ?>" onclick="return confirmarEliminacion()">Eliminar</a>
+                            <a href="UpdateEquipo.php?actualizar=<?php echo $mostrar['id'] ?>">Actualizar</a>
                         </td>
                     </tr>
                 <?php
@@ -131,52 +135,5 @@ if (isset($_GET['eliminar'])) {
             </tbody>
         </table>
     </div>
-
-    <footer class="footer">
-        <div class="footer-content container">
-            <div class="footer-section">
-                <img src="Images/Rapid-flow_SinFondo.png" alt="Logo" class="footer-logo">
-                <p>© 2024 Rapid-flow.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Actividad</h4>
-                <ul>
-                    <li>Proyecto Final</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Integrantes</h4>
-                <ul>
-                    <li>Alex Missael Torres Hernandez</li>
-                    <li>Arturo Yael Posadas Guadarrama</li>
-                    <li>Juan José de Jesús González Andrade</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Materia</h4>
-                <ul>
-                    <li>Desarrollo Web</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Escuela</h4>
-                <ul>
-                    <li>Ceti Plantel Colomos</li>
-                </ul>
-            </div>
-           
-            <div class="footer-section">
-                <h4>Social</h4>
-                <ul>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Github</a></li>
-                    <li><a href="#">YouTube</a></li>
-                    <li><a href="#">Twitch</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
 </body>
-
 </html>

@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Verificar si se ingresó una nueva contraseña
     if (!empty($password)) {
-        
         $update_query = "UPDATE usuarios SET Nombre = ?, Email = ?, password = ? WHERE id = ?";
         $stmt = mysqli_prepare($conn, $update_query);
         mysqli_stmt_bind_param($stmt, "sssi", $name, $email, $password, $user_id);
@@ -78,13 +77,13 @@ mysqli_close($conn);
 </head>
 
 <body>
-    <header class="header">
+    <header>
         <div class="content">
             <div class="menu container">
                 <div class="logo">
                     <!-- Aquí puede ir tu logo -->
                 </div>
-                <input type="checkbox" id="menu">
+                
                 <label for="menu">
                     <img src="Images/menu.png" class="menu-icono" alt="">
                 </label>
@@ -144,53 +143,6 @@ mysqli_close($conn);
             });
         }
     </script>
-
-<footer class="footer">
-        <div class="footer-content container">
-            <div class="footer-section">
-                <img src="Images/Rapid-flow_SinFondo.png" alt="Logo" class="footer-logo">
-                <p>© 2024 Rapid-flow.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Actividad</h4>
-                <ul>
-                    <li>Proyecto Final</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Integrantes</h4>
-                <ul>
-                    <li>Alex Missael Torres Hernandez</li>
-                    <li>Arturo Yael Posadas Guadarrama</li>
-                    <li>Juan José de Jesús González Andrade</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Materia</h4>
-                <ul>
-                    <li>Desarrollo Web</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Escuela</h4>
-                <ul>
-                    <li>Ceti Plantel Colomos</li>
-                </ul>
-            </div>
-           
-            <div class="footer-section">
-                <h4>Social</h4>
-                <ul>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Github</a></li>
-                    <li><a href="#">YouTube</a></li>
-                    <li><a href="#">Twitch</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-    
 </body>
 
 </html>
