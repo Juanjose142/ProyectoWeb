@@ -86,7 +86,7 @@
 
             function dragStart(e) {
                 this.classList.add('dragging');
-                e.dataTransfer.setData('text/plain', this.innerHTML);
+                e.dataTransfer.setData('text/plain', this.id);
             }
 
             function dragEnd() {
@@ -107,13 +107,32 @@
             }
 
             function dragDrop(e) {
-                const data = e.dataTransfer.getData('text/plain');
-                const draggingElement = document.querySelector('.dragging');
+                const id = e.dataTransfer.getData('text/plain');
+                const draggingElement = document.getElementById(id);
                 this.classList.remove('hovered');
                 if (draggingElement) {
-                    draggingElement.innerHTML = data;
                     this.appendChild(draggingElement);
+                    const newStatus = this.getAttribute('data-status');
+                    updateTaskStatus(id, newStatus);
                 }
+            }
+
+            function updateTaskStatus(id, status) {
+                const formData = new FormData();
+                formData.append('id', id);
+                formData.append('estado', status);
+
+                fetch('actualizar_tarea.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error al actualizar el estado de la tarea:', error);
+                });
             }
 
             // Obtener tareas desde la base de datos
@@ -125,6 +144,7 @@
                         const newCard = document.createElement('div');
                         newCard.classList.add('kanban-card');
                         newCard.setAttribute('draggable', 'true');
+                        newCard.setAttribute('id', tarea.id);
                         newCard.textContent = tarea.titulo;
                         newCard.addEventListener('dragstart', dragStart);
                         newCard.addEventListener('dragend', dragEnd);
@@ -177,34 +197,32 @@
                                         method: 'POST',
                                         body: formData
                                     })
-                                    .then(response => response.text())
-                                    .then(data => {
-                                        console.log(data);
-                                        const column = document.querySelector(`.kanban-column[data-status="${status}"]`);
-                                        const newCard = document.createElement('div');
-                                        newCard.classList.add('kanban-card');
-                                        newCard.setAttribute('draggable', 'true');
-                                        newCard.textContent = taskTitle;
-                                        newCard.addEventListener('dragstart', dragStart);
-                                        newCard.addEventListener('dragend', dragEnd);
-                                        newCard.addEventListener('dblclick', () => removeTask(newCard));
-                                        column.appendChild(newCard);
-                                    })
-                                    .catch(error => {
-                                        console.error('Error al guardar la tarea:', error);
-                                    });
+                                        .then(response => response.text())
+                                        .then(data => {
+                                            console.log(data);
+                                            const column = document.querySelector(`.kanban-column[data-status="${status}"]`);
+                                            const newCard = document.createElement('div');
+                                            newCard.classList.add('kanban-card');
+                                            newCard.setAttribute('draggable', 'true');
+                                            newCard.setAttribute('id', data); // Use the returned id
+                                            newCard.textContent = taskTitle;
+                                            newCard.addEventListener('dragstart', dragStart);
+                                            newCard.addEventListener('dragend', dragEnd);
+                                            newCard.addEventListener('dblclick', () => removeTask(newCard));
+                                            column.appendChild(newCard);
+                                        })
+                                        .catch(error => {
+                                            console.error('Error al guardar la tarea:', error);
+                                        });
                                 }
                             }
                         });
-                    })
-                    .catch(error => {
-                        console.error('Error al obtener la lista de usuarios:', error);
                     });
             };
 
             // Función para eliminar tarea
             window.removeTask = function (card) {
-                Swal.fire({
+            Swal.fire({
                     title: '¿Estás seguro?',
                     text: "¿Estás seguro de que deseas eliminar esta tarea?",
                     icon: 'warning',
@@ -213,13 +231,30 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Sí, eliminar',
                     cancelButtonText: 'Cancelar'
-                }).then((result) => {
+                    }).then((result) => {
                     if (result.isConfirmed) {
-                        card.remove();
-                    }
-                });
-            };
-        });
+                        const taskId = card.id;
+                        const formData = new FormData();
+                        formData.append('id', taskId);
+
+                        fetch('eliminar_tarea.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            console.log('Respuesta del servidor:', data);
+                            card.remove();
+                        })
+                        .catch(error => {
+                            console.error('Error al eliminar la tarea:', error);
+                        });
+                                }
+                            });
+                        };
+                    });
     </script>
+</div>
 </body>
 </html>
+

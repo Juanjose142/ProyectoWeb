@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        echo "Tarea insertada correctamente.";
+        echo $stmt->insert_id; // Devuelve el ID de la tarea recién creada
     } else {
         echo "Error al insertar la tarea: " . $stmt->error;
     }
