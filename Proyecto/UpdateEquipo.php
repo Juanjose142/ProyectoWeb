@@ -75,7 +75,8 @@ if (isset($_POST['actualizar'])) {
     <link rel="stylesheet" href="Styles/StylesUpdateEquipo.css">
 </head>
 <body>
-<header>
+<div class="content-wrapper">
+<header class="header">
         <div class="content">
             <div class="menu container">
                 <div class="logo">
@@ -164,7 +165,7 @@ if (isset($_POST['actualizar'])) {
             });
         }
     </script>
-
+</div>
 <footer class="footer">
     <div class="footer-content container">
         <div class="footer-section">
