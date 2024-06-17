@@ -122,48 +122,72 @@
 
             
             window.addTask = function (status) {
-    Swal.fire({
-        title: 'Introduce el nombre de la tarea:',
-        input: 'text',
-        inputPlaceholder: 'Nombre de la tarea',
-        showCancelButton: true,
-        confirmButtonText: 'Agregar',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const taskText = result.value;
-            if (taskText) {
-                
-                const formData = new FormData();
-                formData.append('titulo', taskText);
-                formData.append('descripcion', ''); 
-                formData.append('estado', status); 
+    // Obtener la lista de usuarios
+    fetch('obtener_usuarios.php')
+        .then(response => response.json())
+        .then(usuarios => {
+            // Crear el HTML para el selector de usuarios
+            let userOptions = usuarios.map(usuario => `<option value="${usuario.id}">${usuario.nombre}</option>`).join('');
+            Swal.fire({
+                title: 'Agregar nueva tarea',
+                html:
+                    '<input id="swal-input1" class="swal2-input" placeholder="Nombre de la tarea">' +
+                    '<textarea id="swal-input2" class="swal2-textarea" placeholder="Descripción"></textarea>' +
+                    `<select id="swal-input3" class="swal2-select">${userOptions}</select>`,
+                focusConfirm: false,
+                showCancelButton: true,
+                confirmButtonText: 'Agregar',
+                cancelButtonText: 'Cancelar',
+                preConfirm: () => {
+                    return [
+                        document.getElementById('swal-input1').value,
+                        document.getElementById('swal-input2').value,
+                        document.getElementById('swal-input3').value
+                    ]
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const taskTitle = result.value[0];
+                    const taskDescription = result.value[1];
+                    const userId = result.value[2];
+                    const taskCreationDate = new Date().toISOString();
+                    if (taskTitle) {
+                        const formData = new FormData();
+                        formData.append('titulo', taskTitle);
+                        formData.append('descripcion', taskDescription);
+                        formData.append('estado', status);
+                        formData.append('fecha_creacion', taskCreationDate);
+                        formData.append('usuario_id', userId);
 
-
-                fetch('guardar_tarea.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => {
-                    console.log(data);
-                    const column = document.querySelector(`.kanban-column[data-status="${status}"]`);
-                    const newCard = document.createElement('div');
-                    newCard.classList.add('kanban-card');
-                    newCard.setAttribute('draggable', 'true');
-                    newCard.textContent = taskText;
-                    newCard.addEventListener('dragstart', dragStart);
-                    newCard.addEventListener('dragend', dragEnd);
-                    newCard.addEventListener('dblclick', () => removeTask(newCard));
-                    column.appendChild(newCard);
-                })
-                .catch(error => {
-                    console.error('Error al guardar la tarea:', error);
-                });
-            }
-        }
-    });
+                        fetch('guardar_tarea.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            console.log(data);
+                            const column = document.querySelector(`.kanban-column[data-status="${status}"]`);
+                            const newCard = document.createElement('div');
+                            newCard.classList.add('kanban-card');
+                            newCard.setAttribute('draggable', 'true');
+                            newCard.textContent = taskTitle;
+                            newCard.addEventListener('dragstart', dragStart);
+                            newCard.addEventListener('dragend', dragEnd);
+                            newCard.addEventListener('dblclick', () => removeTask(newCard));
+                            column.appendChild(newCard);
+                        })
+                        .catch(error => {
+                            console.error('Error al guardar la tarea:', error);
+                        });
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener la lista de usuarios:', error);
+        });
 };
+
 
 
 
